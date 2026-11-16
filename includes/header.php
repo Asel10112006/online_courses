@@ -12,7 +12,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <title><?= htmlspecialchars($pageTitle ?? "Online Courses") ?></title>
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="/online/style.css">
 </head>
 <body>
 
