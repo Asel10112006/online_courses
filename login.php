@@ -1,34 +1,44 @@
-<!DOCTYPE html>
-<html lang="kk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Жүйеге кіру</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+<?php
+require_once "config/db.php";
+$pageTitle = "Кіру";
+$error = "";
 
-<div class="form-container">
+if (isLoggedIn()) {
+    header("Location: courses.php");
+    exit;
+}
 
-    <h2>Жүйеге кіру</h2>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
 
-    <form action="login.php" method="POST">
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch();
 
-        <input type="email" name="email"
-               placeholder="Электрондық пошта" required>
-
-        <input type="password" name="password"
-               placeholder="Құпиясөз" required>
-
-        <button type="submit">Кіру</button>
-
+    if ($user && password_verify($password, $user['password'])) {
+        session_regenerate_id(true);
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_name'] = $user['name'];
+        $_SESSION['role'] = $user['role'];
+        header("Location: courses.php");
+        exit;
+    }
+    $error = "Email немесе пароль қате.";
+}
+require_once "includes/header.php";
+?>
+<section class="container">
+    <h2>Кіру</h2>
+    <?php if (isset($_GET['registered'])): ?>
+        <p style="color:green">Тіркелу сәтті өтті! Енді кіріңіз.</p>
+    <?php endif; ?>
+    <?php if ($error): ?><p style="color:red"><?= e($error) ?></p><?php endif; ?>
+    <form method="post">
+        <p><input type="email" name="email" placeholder="Email" required></p>
+        <p><input type="password" name="password" placeholder="Пароль" required></p>
+        <button type="submit" class="main-btn">Кіру</button>
     </form>
-
-    <p>Аккаунтыңыз жоқ па?
-        <a href="register.php">Тіркелу</a>
-    </p>
-
-</div>
-
-</body>
-</html>
+    <p>Аккаунт жоқ па? <a href="register.php">Тіркелу</a></p>
+</section>
+<?php require_once "includes/footer.php"; ?>
