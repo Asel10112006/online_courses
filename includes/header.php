@@ -11,8 +11,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><?= htmlspecialchars($pageTitle ?? "Online Courses") ?></title>
-
-    <link rel="stylesheet" href="/online/style.css">
+     <link rel="stylesheet" href="/online_courses/style.css">
 </head>
 <body>
 
