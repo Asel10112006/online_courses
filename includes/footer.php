@@ -3,7 +3,7 @@
     <p>Онлайн білім алу платформасы</p>
 </footer>
 
-<script src="/online/script.js"></script>
+<script src="/online_courses/script.js"></script>
 
 </body>
 </html>
