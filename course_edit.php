@@ -3,7 +3,6 @@ require_once "config/db.php";
 requireLogin();
 $pageTitle = "Курсты өңдеу";
 $errors = [];
-
 $id = (int)($_GET['id'] ?? $_POST['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM courses WHERE id = ?");
 $stmt->execute([$id]);
