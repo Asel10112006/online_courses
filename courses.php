@@ -122,10 +122,27 @@ require_once "includes/header.php";
         <?php foreach ($courses as $course): ?>
             <div class="card">
                 <h3><?= e($course['title']) ?></h3>
-                <p><small><?= e($course['category_name']) ?> · <?= e($course['author']) ?> · <?= date('d.m.Y', strtotime($course['created_at'])) ?></small></p>
-                <p><?= e(mb_strimwidth($course['description'], 0, 120, '...', 'UTF-8')) ?></p>
-                <p><strong><?= $course['price'] > 0 ? number_format($course['price'], 0, '', ' ') . ' ₸' : 'Тегін' ?></strong></p>
+          <p><small>
+    <?= e($course['category_name']) ?> ·
+    <?= e($course['author']) ?> ·
+    <?= date('d.m.Y', strtotime($course['created_at'])) ?>
+</small></p>
 
+<p><?= e(mb_strimwidth($course['description'], 0, 120, '...', 'UTF-8')) ?></p>
+
+<p>
+    <strong>
+        <?= $course['price'] > 0
+            ? number_format($course['price'], 0, '', ' ') . ' ₸'
+            : 'Тегін' ?>
+    </strong>
+</p>
+
+<p>
+    <a href="course_view.php?id=<?= (int)$course['id'] ?>" class="main-btn">
+        Толығырақ
+    </a>
+</p>
                 <?php if (canEdit($course['user_id'])): ?>
                     <a href="course_edit.php?id=<?= $course['id'] ?>">Өңдеу</a>
                     <form method="post" action="course_delete.php" style="display:inline"

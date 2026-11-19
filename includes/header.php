@@ -11,7 +11,9 @@ if (session_status() === PHP_SESSION_NONE) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><?= htmlspecialchars($pageTitle ?? "Online Courses") ?></title>
-     <link rel="stylesheet" href="/online_courses/style.css">
+    <link rel="stylesheet" href="/online_courses/style.css">
+
+    
 </head>
 <body>
 
@@ -23,6 +25,8 @@ if (session_status() === PHP_SESSION_NONE) {
         <nav>
             <a href="index.php">Басты бет</a>
             <a href="courses.php">Курстар</a>
+            <?php if (isLoggedIn()): ?>
+
 
             <?php if (isset($_SESSION['user_id'])): ?>
 
