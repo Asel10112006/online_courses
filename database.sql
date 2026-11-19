@@ -26,5 +26,4 @@ CREATE TABLE courses (
     FOREIGN KEY (category_id) REFERENCES categories(id),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-
 INSERT INTO categories (name) VALUES ('Бағдарламалау'), ('Дизайн'), ('Тілдер'), ('Бизнес');
