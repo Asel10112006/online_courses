@@ -7,7 +7,6 @@ $host = "localhost";
 $dbname = "courses_db";
 $user = "root";
 $pass = "";
-
 try {
     $pdo = new PDO(
         "mysql:host=$host;dbname=$dbname;charset=utf8mb4",
