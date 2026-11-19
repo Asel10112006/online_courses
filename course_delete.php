@@ -6,7 +6,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header("Location: courses.php");
     exit;
 }
-
 $id = (int)($_POST['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT user_id FROM courses WHERE id = ?");
 $stmt->execute([$id]);
