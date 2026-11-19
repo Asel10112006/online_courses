@@ -6,7 +6,6 @@ $errors = [];
 $title = $description = "";
 $category_id = 0;
 $price = "0";
-
 $categories = $pdo->query("SELECT * FROM categories ORDER BY name")->fetchAll();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
